@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ProjectOrganizer.App">
+	<Application.Resources>
+		<!--Global Styles-->
+		<Style x:Key="DefaultTimePicker"
+		       TargetType="TimePicker">
+			<Setter Property="Format"
+			        Value="hh:mm tt" />
+			<Setter Property="VerticalOptions"
+			        Value="Center" />
+			<Setter Property="HorizontalOptions"
+			        Value="Center" />
+			<Setter Property="Margin"
+			        Value="0" />
+		</Style>
+
+		<Style x:Key="DefaultLabel"
+		       TargetType="Label">
+			<Setter Property="TextColor"
+			        Value="Accent" />
+		</Style>
+
+		<Style x:Key="OutmostStackLayout" TargetType="StackLayout">
+			<Setter Property="Orientation" Value="Vertical"/>
+			<Setter Property="Margin" Value="20"/>
+			<Setter Property="Padding" Value="5"/>
+		</Style>
+
+		<DataTemplate x:Key="ProjectListTemplate">
+			<ViewCell>
+				<StackLayout Padding="10">
+					<Label Text="{Binding Name}"
+					       Style="{DynamicResource ListItemTextStyle}"
+					       FontSize="16" />
+					<Label Text="{Binding Description}"
+					       Style="{DynamicResource ListItemDetailTextStyle}"
+					       FontSize="13" />
+					<Label Text="{Binding HoursWorked, StringFormat='Hours Worked = {0:F2}'}"
+					       Style="{DynamicResource ListItemDetailTextStyle}"
+					       FontSize="12" />
+				</StackLayout>
+			</ViewCell>
+		</DataTemplate>
+
+		<DataTemplate x:Key="ListViewHeader">
+			<StackLayout Orientation="Horizontal"
+			             Margin="2">
+				<Label Text="{Binding ListTitle}"
+				       TextColor="Accent" />
+			</StackLayout>
+		</DataTemplate>
+	</Application.Resources>
+</Application>

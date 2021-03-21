@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ItemDetailsPage x:TypeArguments="models:Client, models:Project"
+					   xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+					   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					   xmlns:views="clr-namespace:ProjectOrganizer.Views"
+					   xmlns:models="clr-namespace:ProjectOrganizer.Models"
+					   xmlns:system="clr-namespace:System;assembly=netstandard"
+					   mc:Ignorable="d"
+					   x:Class="ProjectOrganizer.Views.ClientDetailsPage"
+					   Title="{Binding Title}">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Delete"
+					 Clicked="DeleteItem_Clicked" />
+		<ToolbarItem Text="Edit"
+					 Clicked="EditItem_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout Style="{StaticResource OutmostStackLayout}">
+			<FlexLayout Padding="5"
+						Direction="Row"
+						Wrap="Wrap"
+						AlignItems="Start"
+						JustifyContent="SpaceAround">
+				<StackLayout Orientation="Vertical"
+							 Margin="10">
+					<Label Text="{Binding Item.Name}"
+						   d:Text="Client Name"
+						   HorizontalOptions="Center"
+						   FontSize="Medium" />
+					<Label Text="{Binding Item.Description}"
+						   d:Text="Description of the client"
+						   FontSize="Small" />
+				</StackLayout>
+				<ListView  x:Name="ItemsListView"
+						   ItemsSource="{Binding Items}"
+						   VerticalOptions="Start"
+						   HasUnevenRows="true"
+						   RefreshCommand="{Binding LoadItemsCommand}"
+						   IsPullToRefreshEnabled="true"
+						   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+						   CachingStrategy="RecycleElement"
+						   ItemSelected="OnItemSelected">
+					<d:ListView.ItemsSource>
+						<x:Array Type="{x:Type models:Project}">
+							<models:Project Name="Project A"
+											Description="This is the description of Project A." />
+							<models:Project Name="Project B"
+											Description="This is the description of Project B." />
+							<models:Project Name="Project C"
+											Description="This is the description of Project C." />
+						</x:Array>
+					</d:ListView.ItemsSource>
+					<ListView.Header>
+						<StackLayout Orientation="Horizontal"
+									 Margin="2">
+							<Label Text="Projects"
+								   TextColor="Accent"
+								   VerticalOptions="Center" />
+							<StackLayout HorizontalOptions="FillAndExpand" />
+							<Button Text="Add Project"
+									Clicked="AddProjectToClient_Clicked"
+									MinimumHeightRequest="20"
+									HorizontalOptions="End" />
+						</StackLayout>
+					</ListView.Header>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout Padding="10">
+									<Label Text="{Binding Name}"
+										   Style="{DynamicResource ListItemTextStyle}"
+										   FontSize="16" />
+									<Label Text="{Binding Description}"
+										   Style="{DynamicResource ListItemDetailTextStyle}"
+										   FontSize="13" />
+									<Label Text="{Binding HoursWorked, StringFormat='Hours Worked = {0:F2}'}"
+										   d:Text="88"
+										   Style="{DynamicResource ListItemDetailTextStyle}"
+										   FontSize="12" />
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</FlexLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</views:ItemDetailsPage>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<views:ItemsListPage x:TypeArguments="models:Client"
+					 xmlns="http://xamarin.com/schemas/2014/forms"
+					 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+					 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					 mc:Ignorable="d"
+					 xmlns:views="clr-namespace:ProjectOrganizer.Views;assembly=ProjectOrganizer"
+					 xmlns:models="clr-namespace:ProjectOrganizer.Models;assembly=ProjectOrganizer"
+					 x:Class="ProjectOrganizer.Views.ClientsListPage"
+					 Title="{Binding Title}">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Add Client"
+					 Clicked="AddItem_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical"
+					 Margin="20">
+			<StackLayout Orientation="Vertical"
+						 VerticalOptions="FillAndExpand">
+				<ListView x:Name="ItemsListView"
+						  ItemsSource="{Binding Items}"
+						  VerticalOptions="Start"
+						  HasUnevenRows="true"
+						  RefreshCommand="{Binding LoadItemsCommand}"
+						  IsPullToRefreshEnabled="true"
+						  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+						  ItemSelected="OnItemSelected">
+					<ListView.Header>
+						<Label Text="Clients"
+							   TextColor="Accent" />
+					</ListView.Header>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout Padding="5">
+									<Label Text="{Binding Name}"
+										   Style="{DynamicResource ListItemTextStyle}"
+										   FontSize="14" />
+									<Label Text="{Binding Description}"
+										   Style="{DynamicResource ListItemDetailTextStyle}"
+										   FontSize="12" />
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</views:ItemsListPage>

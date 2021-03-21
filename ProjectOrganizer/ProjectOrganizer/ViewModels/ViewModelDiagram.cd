@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectOrganizer.ViewModels.AddItemViewModel&lt;T&gt;">
+    <Position X="6" Y="4.5" Width="2.5" />
+    <Members>
+      <Field Name="_errorMessage" Hidden="true" />
+      <Field Name="_isItemInError" Hidden="true" />
+      <Field Name="_item" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAEAAAAAACAQAAgAAAAAIEABAAAIAAQAAAAIAEAAA=</HashCode>
+      <FileName>ViewModels\AddViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectOrganizer.ViewModels.AddProjectViewModel">
+    <Position X="6" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AddProjectViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectOrganizer.ViewModels.AddWorkshiftViewModel">
+    <Position X="9" Y="8.25" Width="2.5" />
+    <Members>
+      <Field Name="_doesWorkshiftExistInDatabase" Hidden="true" />
+      <Field Name="_endTime" Hidden="true" />
+      <Field Name="_selectedProject" Hidden="true" />
+      <Field Name="_startTime" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAQAAIIAAEAAAAAACAAAAIAAgAAAgAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModels\AddWorkshiftViewModel.cs</FileName>
+      <NewMemberFileName>ViewModels\AddViewModel.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectOrganizer.ViewModels.BaseViewModel">
+    <Position X="7.5" Y="1.75" Width="1.75" />
+    <Members>
+      <Field Name="_isBusy" Hidden="true" />
+      <Field Name="_title" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAEAAIAAAAARAgAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectOrganizer.ViewModels.DetailsViewModel&lt;T&gt;">
+    <Position X="8.75" Y="4.5" Width="2.25" />
+    <Members>
+      <Field Name="item" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAQAABAMAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\DetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectOrganizer.ViewModels.HomeViewModel">
+    <Position X="3.5" Y="4.5" Width="2.25" />
+    <Members>
+      <Field Name="_currentWorkshiftProject" Hidden="true" />
+      <Field Name="_isLoadTestDataButtonVisible" Hidden="true" />
+      <Field Name="_isUserWorking" Hidden="true" />
+      <Field Name="items" Hidden="true" />
+      <Field Name="projectSearchEntry" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAkEAAAIQAAAKAQAAQhAAAAEBAAEBAAAAAAAAAQAAAA=</HashCode>
+      <FileName>ViewModels\HomeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectOrganizer.ViewModels.ListViewModel&lt;T&gt;">
+    <Position X="11.25" Y="4.5" Width="2.5" />
+    <Members>
+      <Field Name="_listTitle" Hidden="true" />
+      <Field Name="items" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACKAAAAAgAAAAABAAEAAAAAEAIAAAAAAA=</HashCode>
+      <FileName>ViewModels\ListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

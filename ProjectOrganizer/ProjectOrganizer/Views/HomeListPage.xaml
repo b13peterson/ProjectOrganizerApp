@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d"
+			 xmlns:models="clr-namespace:ProjectOrganizer.Models"
+			 x:Class="ProjectOrganizer.HomeListPage"
+			 Title="Organizer">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Clients"
+					 Clicked="OnClientsClicked" />
+		<ToolbarItem Text="Workshifts"
+					 Clicked="OnWorkshiftsClicked" />
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout Style="{StaticResource OutmostStackLayout}">
+				<StackLayout VerticalOptions="FillAndExpand">
+					<Button Text="Load Test Data"
+							Clicked="OnLoadTestDataClicked"
+							IsVisible="{Binding IsLoadTestDataButtonVisible}" />
+					<Button Text="End Current Workshift"
+							Clicked="EndCurrentWorkshift"
+							IsVisible="{Binding IsUserWorking}" />
+					<ListView ItemTemplate="{StaticResource ProjectListTemplate}"
+							  ItemsSource="{Binding Items}"
+							  HasUnevenRows="true"
+							  RefreshCommand="{Binding LoadItemsCommand}"
+							  IsPullToRefreshEnabled="true"
+							  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+							  CachingStrategy="RecycleElement"
+							  SelectedItem="{Binding CurrentWorkshiftProject, Mode=OneWay}"
+							  ItemSelected="OnItemSelected">
+						<d:ListView.ItemsSource>
+							<x:Array Type="{x:Type models:Project}">
+								<models:Project Name="Project A"
+												Description="This is the description of Project A." />
+							</x:Array>
+						</d:ListView.ItemsSource>
+						<ListView.Header>
+							<StackLayout HorizontalOptions="FillAndExpand">
+								<Label Text="Search Projects:" />
+								<Entry Text="{Binding ProjectSearchEntry}"
+									   TextChanged="OnProjectSearchTextChanged" />
+							</StackLayout>
+						</ListView.Header>
+					</ListView>
+				</StackLayout>
+				<Button Text="Delete all data"
+						Clicked="OnDeleteButtonClicked" />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ItemDetailsPage x:TypeArguments="models:Project, models:Workshift"
+					   xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+					   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					   mc:Ignorable="d"
+					   xmlns:views="clr-namespace:ProjectOrganizer.Views"
+					   xmlns:models="clr-namespace:ProjectOrganizer.Models"
+					   x:Class="ProjectOrganizer.Views.ProjectDetailsPage"
+					   Title="{Binding Title}">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Delete"
+					 Clicked="DeleteItem_Clicked" />
+		<ToolbarItem Text="Edit"
+					 Clicked="EditItem_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout Style="{StaticResource OutmostStackLayout}">
+			<FlexLayout Padding="5"
+						Direction="Row"
+						Wrap="Wrap"
+						AlignItems="Start"
+						JustifyContent="SpaceAround">
+				<StackLayout Orientation="Vertical"
+							 Margin="10"
+							 HorizontalOptions="FillAndExpand">
+					<Label Text="{Binding Item.Name}"
+						   d:Text="Project Name"
+						   VerticalOptions="Center"
+						   FontSize="Large" />
+					<Label Text="{Binding Item.Description}"
+						   d:Text="Description of the project"
+						   FontSize="Small" />
+					<StackLayout Orientation="Horizontal"
+								 HorizontalOptions="CenterAndExpand">
+						<Label Text="{Binding Item.ClientName, StringFormat='Client: {0}'}"
+							   d:Text="Client: ClientName"
+							   Style="{DynamicResource ListItemTextStyle}"
+							   HorizontalOptions="Start"
+							   FontSize="Small" />
+						<Label Text="{Binding Item.HoursWorked, StringFormat='Hours Worked: {0:F2}'}"
+							   d:Text="Hours Worked: 100.00"
+							   Style="{DynamicResource ListItemTextStyle}"
+							   HorizontalOptions="End"
+							   FontSize="Small" />
+					</StackLayout>
+				</StackLayout>
+				<StackLayout Orientation="Vertical"
+							 Margin="10"
+							 HorizontalOptions="FillAndExpand">
+					<Label Text="{Binding Item.ContactName, StringFormat='Contact: {0}'}"
+					d:Text="Contact: John Smith"
+						   FontSize="Medium" />
+					<Label Text="{Binding Item.ContactPhoneNumber, StringFormat='Phone: {0}'}"
+						   d:Text="Phone: (123) 456-7890"
+						   FontSize="Small" />
+					<Label Text="{Binding Item.ContactEmail, StringFormat='Email: {0}'}"
+						   d:Text="Email: abcdefg@hijk.com"
+						   FontSize="Small" />
+				</StackLayout>
+				<ListView x:Name="ItemsListView"
+						  ItemsSource="{Binding Items}"
+						  VerticalOptions="Start"
+						  HasUnevenRows="true"
+						  RefreshCommand="{Binding LoadItemsCommand}"
+						  IsPullToRefreshEnabled="true"
+						  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+						  CachingStrategy="RecycleElement"
+						  ItemSelected="OnItemSelected">
+					<d:ListView.ItemsSource>
+						<x:Array Type="{x:Type models:Workshift}">
+							<models:Project Name="Workshift A"
+											Description="This is the description of Workshift A." />
+							<models:Project Name="Workshift B"
+											Description="This is the description of Workshift B." />
+							<models:Project Name="Workshift C"
+											Description="This is the description of Workshift C." />
+						</x:Array>
+					</d:ListView.ItemsSource>
+					<ListView.Header>
+						<StackLayout Orientation="Horizontal"
+									 Margin="2">
+							<Label Text="Workshifts"
+								   TextColor="Accent"
+								   VerticalOptions="Center" FontSize="Medium" />
+							<StackLayout HorizontalOptions="FillAndExpand" />
+							<Button Text="Add Workshift"
+									Clicked="AddWorkshiftClicked"
+									MinimumHeightRequest="20"
+									HorizontalOptions="End" />
+						</StackLayout>
+					</ListView.Header>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout Padding="10">
+									<StackLayout Orientation="Horizontal"
+												 HorizontalOptions="CenterAndExpand">
+										<Label Text="{Binding Name}"
+											   Style="{DynamicResource ListItemTextStyle}"
+											   FontSize="16" />
+										<Label Text="{Binding Hours, Mode=OneWay, StringFormat='Hours: {0:F2}'}"
+											   d:Text="Hours: 10.00"
+											   HorizontalOptions="End"
+											   Style="{DynamicResource ListItemDetailTextStyle}"
+											   FontSize="12" />
+									</StackLayout>
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</FlexLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</views:ItemDetailsPage>

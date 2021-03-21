@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<views:AddItemPage xmlns="http://xamarin.com/schemas/2014/forms"
+				   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+				   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+				   xmlns:views="clr-namespace:ProjectOrganizer.Views"
+				   xmlns:models="clr-namespace:ProjectOrganizer.Models"
+				   mc:Ignorable="d"
+				   x:Class="ProjectOrganizer.Views.AddWorkshiftPage"
+				   x:TypeArguments="models:Workshift"
+				   Title="{Binding Title}">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Cancel"
+					 Clicked="Cancel_Clicked" />
+		<ToolbarItem Text="Save"
+					 Command="{Binding SaveCommand}"
+					 Clicked="Save_Clicked" />
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout Style="{StaticResource OutmostStackLayout}">
+				<StackLayout>
+					<Label Text="{Binding ErrorMessage}"
+						   FontSize="Medium"
+						   HorizontalOptions="Center"
+						   TextColor="Accent"
+						   IsVisible="{Binding IsItemInError}" />
+					<Label Text="Project"
+						   FontSize="Medium" />
+					<Label Text="{Binding SelectedProject.Name}"
+						   FontSize="Medium"
+						   IsVisible="{Binding IsProjectSet}" />
+					<Picker ItemsSource="{Binding Projects}"
+							ItemDisplayBinding="{Binding Name}"
+							SelectedIndexChanged="OnProjectChanged"
+							IsVisible="{Binding IsProjectChangeable}"
+							SelectedItem="{Binding SelectedProject, Mode=OneWay}" />
+				</StackLayout>
+				<StackLayout Orientation="Vertical">
+					<Label Text="Name"
+						   FontSize="Medium" />
+					<Entry Text="{Binding Item.Name}"
+						   FontSize="Small"
+						   TextChanged="OnDataEntryChanged" />
+					<Label Text="Description"
+						   FontSize="Medium" />
+					<Editor Text="{Binding Item.Description}"
+							FontSize="Small"
+							AutoSize="TextChanges"
+							Margin="0"
+							TextChanged="OnDataEntryChanged" />
+				</StackLayout>
+				<StackLayout>
+					<StackLayout Orientation="Horizontal"
+								 HorizontalOptions="Center">
+						<Label Text="Start:"
+							   VerticalOptions="Center" />
+						<DatePicker HorizontalOptions="Center"
+									Date="{Binding Item.Start}"
+									DateSelected="OnDateTimeEntryChanged" />
+						<TimePicker Time="{Binding StartTime}"
+									Style="{StaticResource DefaultTimePicker}"
+									PropertyChanged="OnDateTimeEntryChanged"/>
+					</StackLayout>
+					<StackLayout Orientation="Horizontal"
+								 HorizontalOptions="Center">
+						<Label Text="End:"
+							   VerticalOptions="Center" />
+						<DatePicker HorizontalOptions="Center"
+									Date="{Binding Item.End}"
+									DateSelected="OnDateTimeEntryChanged" />
+						<TimePicker Time="{Binding EndTime}"
+									Style="{StaticResource DefaultTimePicker}"
+									PropertyChanged="OnDateTimeEntryChanged" />
+					</StackLayout>
+				</StackLayout>
+				<Button Text="Delete"
+						Clicked="OnDeleteClicked"
+						IsVisible="{Binding DoesWorkshiftExistInDatabase}" />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</views:AddItemPage>

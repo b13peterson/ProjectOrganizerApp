@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<views:AddItemPage xmlns="http://xamarin.com/schemas/2014/forms"
+				   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+				   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+				   xmlns:views="clr-namespace:ProjectOrganizer.Views"
+				   xmlns:models="clr-namespace:ProjectOrganizer.Models"
+				   mc:Ignorable="d"
+				   x:Class="ProjectOrganizer.Views.AddProjectPage"
+				   x:TypeArguments="models:Project"
+				   Title="{Binding Title}">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Cancel"
+					 Clicked="Cancel_Clicked" />
+		<ToolbarItem Text="Save"
+					 Command="{Binding SaveCommand}"
+					 Clicked="Save_Clicked" />
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<ScrollView Margin="0">
+			<StackLayout Style="{StaticResource OutmostStackLayout}">
+				<Label Text="{Binding ErrorMessage}"
+					   FontSize="Medium"
+					   HorizontalOptions="Center"
+					   TextColor="Accent"
+					   IsVisible="{Binding IsItemInError}" />
+				<StackLayout Orientation="Vertical">
+					<Label Text="Name"
+						   FontSize="Medium" />
+					<Entry Text="{Binding Item.Name}"
+						   TextChanged="OnDataEntryChanged"
+						   FontSize="Small" />
+					<Label Text="Description"
+						   FontSize="Medium" />
+					<Editor Text="{Binding Item.Description}"
+							FontSize="Small"
+							AutoSize="TextChanges"
+							TextChanged="OnDataEntryChanged" />
+				</StackLayout>
+				<StackLayout Orientation="Vertical">
+					<Label Text="Contact Info"
+						   FontAttributes="Bold"
+						   FontSize="Medium"
+						   TextColor="Accent" />
+					<StackLayout Orientation="Horizontal">
+						<Label Text="Name:"
+							   VerticalOptions="Center" />
+						<Entry Text="{Binding Item.ContactName}"
+							   HorizontalOptions="FillAndExpand"
+							   TextChanged="OnDataEntryChanged" />
+					</StackLayout>
+					<StackLayout Orientation="Horizontal"
+								 Padding="0">
+						<Label Text="Phone Number:"
+							   VerticalOptions="Center" />
+						<Entry Text="{Binding Item.ContactPhoneNumber}"
+							   HorizontalOptions="FillAndExpand"
+							   TextChanged="OnDataEntryChanged"
+							   Keyboard="Numeric" />
+					</StackLayout>
+					<StackLayout Orientation="Horizontal">
+						<Label Text="Email:"
+							   VerticalOptions="Center" />
+						<Entry Text="{Binding Item.ContactEmail}"
+							   HorizontalOptions="FillAndExpand"
+							   TextChanged="OnDataEntryChanged"
+							   IsTextPredictionEnabled="False"
+							   Keyboard="Email" />
+					</StackLayout>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Active Project? (Shown On Home Page): " VerticalOptions="Center"/>
+					<Switch IsToggled="{Binding Item.IsCurrent}" />
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</views:AddItemPage>
