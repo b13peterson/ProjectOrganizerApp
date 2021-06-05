@@ -1,4 +1,4 @@
-using ProjectOrganizer.Extensions;
+using ProjectOrganizerLibrary.Extensions;
 using ProjectOrganizer.Models;
 using Xunit;
 

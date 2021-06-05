@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ProjectOrganizer.Interfaces;
 using ProjectOrganizer.Models;
+using ProjectOrganizerLibrary;
 using SQLite;
 using Xamarin.Forms;
 

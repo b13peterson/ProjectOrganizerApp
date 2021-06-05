@@ -1,4 +1,4 @@
-﻿namespace ProjectOrganizer
+﻿namespace ProjectOrganizerLibrary
 {
 	public static class Constants
 	{

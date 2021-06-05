@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace ProjectOrganizer.Extensions
+namespace ProjectOrganizerLibrary.Extensions
 {
 	public static class StringExtensions
 	{

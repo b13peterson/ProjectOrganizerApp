@@ -33,6 +33,10 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProjectOrganizerLibrary\ProjectOrganizerLibrary.csproj">
+      <Project>{9ed8404f-ffaf-42fb-8dd0-bd7c1f5efaf9}</Project>
+      <Name>ProjectOrganizerLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectOrganizer\ProjectOrganizer\ProjectOrganizer.csproj">
       <Project>{d87c48c1-77dd-45f7-90e4-f77a0079a5b4}</Project>
       <Name>ProjectOrganizer</Name>
